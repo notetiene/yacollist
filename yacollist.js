@@ -40,4 +40,28 @@ function isStringArray(a) {
     return false;
 }
 
+/**
+ * Error that a value is not of type {@linkcode String}.
+ * @constructor
+ * @param {String} message - Message to display.
+ * @augments TypeError
+ */
+function NotStringError(message) {
+    /**
+     * @property {String} name - Name for the type of error.
+     * @constant
+     * @public
+     */
+    this.name = 'NotStringError';
+
+    /**
+     * @property {String} message - Human-readable description of the error.
+     * @constant
+     * @public
+     */
+    this.message = message || 'It’s not a valid String';
+    this.stack = (new Error()).stack;
+}
+NotStringError.prototype = new TypeError;
+
 /* yacollist.js ends here */
