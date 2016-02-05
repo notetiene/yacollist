@@ -88,4 +88,9 @@ function NotArrayStringsError(message) {
 }
 NotArrayStringsError.prototype = new TypeError;
 
+/* ============================================================ */
+/* Utility functions ends here                                  */
+/* ============================================================ */
+
+
 /* yacollist.js ends here */
