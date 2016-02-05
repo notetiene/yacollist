@@ -93,4 +93,32 @@ NotArrayStringsError.prototype = new TypeError;
 /* ============================================================ */
 
 
+/**
+ * Contains a title and a list representing a sublist.
+ * @Constructor
+ * @param {String} title - The title of the subList.
+ * @param {String[]} subItems - An array of {@linkcode String} containing list items.
+ */
+var SubList = function(title, subItems) {
+    try {
+        this.isSubList(title, subItems);
+
+        /**
+         * @property {String} title - The title that expands the subList.
+         * @private
+         */
+        this.title = title;
+
+        /**
+         * @property {String[]} subItems - Items of the subList.
+         * @private
+         */
+        this.subItems = subItems;
+    } catch(e) {
+        console.log(e.message);
+        return undefined;
+    }
+    // Args are valid
+};
+
 /* yacollist.js ends here */
