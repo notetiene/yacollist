@@ -59,7 +59,7 @@ function NotStringError(message) {
      * @constant
      * @public
      */
-    this.message = message || 'It’s not a valid String';
+    this.message = message || 'It’s not a valid String.';
     this.stack = (new Error()).stack;
 }
 NotStringError.prototype = new TypeError;
@@ -83,7 +83,7 @@ function NotArrayError(message) {
      * @constant
      * @public
      */
-    this.message = message || 'It’s not a valid Array';
+    this.message = message || 'It’s not a valid Array.';
     this.stack = (new Error()).stack;
 }
 NotArrayError.prototype = new TypeError;
@@ -107,7 +107,7 @@ function NotArrayStringsError(message) {
      * @constant
      * @public
      */
-    this.message = message || 'It’s not a valid Array of Strings';
+    this.message = message || 'It’s not a valid Array of Strings.';
     this.stack = (new Error()).stack;
 }
 NotArrayStringsError.prototype = new NotArrayError;
