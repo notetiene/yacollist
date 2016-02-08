@@ -121,4 +121,24 @@ var SubList = function(title, subItems) {
     // Args are valid
 };
 
+/**
+ * Checks if arguments can be valid as a {@linkcode SubList}
+ * @param {String} title - The title of the subList.
+ * @param {String[]} subItems - Array of Strings containing subItems.
+ * @throws {NotStringError|NotArrayStringsError} - Error in arguments.
+ * @static
+ * @returns {?bool} True if it’s a valid SubString
+ */
+SubList.isSubList = function(title, subItems) {
+    if(!isString(title)) {
+        throw new NotStringError('Argument title is not a valid String.');
+    }
+    if(!isStringArray(subItems)) {
+        throw new NotArrayStringsError('Argument subList is not a valid Array of Strings.');
+    }
+    return true;
+};
+// For creating a static method
+SubList.prototype.isSubList = SubList.isSubList;
+
 /* yacollist.js ends here */
