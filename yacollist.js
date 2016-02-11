@@ -175,7 +175,7 @@ SubList.prototype.isSubList = SubList.isSubList;
  * @param {Array} data - Array of {@linkcode String} and/or {@link SubList}.
  * @throws {NotArrayError} - Error in arguments.
  */
-var toggleList = function(data) {
+var ToggleList = function(data) {
     if(!isArray(data)) {
         throw new NotArrayError('Argument list is not a valid Array.');
     }
@@ -216,7 +216,7 @@ var toggleList = function(data) {
  * @method
  * @param {String} skill - Item added to the list.
  */
-toggleList.prototype.add = function(item) {
+ToggleList.prototype.add = function(item) {
     if(!isString(item)) {
         throw 'NotStringError';
     }
@@ -231,7 +231,7 @@ toggleList.prototype.add = function(item) {
  * @param {String[]} subItems - {@link SubList} of the item to add.
  * @return {bool} Function status as a boolean.
  */
-toggleList.prototype.addSubList = function(title, subItems) {
+ToggleList.prototype.addSubList = function(title, subItems) {
     // SubList already checks if args make a valid SubList
     var subList = new SubList(title, subItems);
 
