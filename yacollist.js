@@ -211,4 +211,16 @@ var toggleList = function(data) {
     }
 };
 
+/**
+ * Add a simple item to the list.
+ * @method
+ * @param {String} skill - Item added to the list.
+ */
+toggleList.prototype.add = function(item) {
+    if(!isString(item)) {
+        throw 'NotStringError';
+    }
+    this.list.push(item);
+};
+
 /* yacollist.js ends here */
