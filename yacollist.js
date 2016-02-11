@@ -223,4 +223,24 @@ toggleList.prototype.add = function(item) {
     this.list.push(item);
 };
 
+
+/**
+ * Add a subList to the list.
+ * @method
+ * @param {String} title - Title of the object containing a {@link SubList}.
+ * @param {String[]} subItems - {@link SubList} of the item to add.
+ * @return {bool} Function status as a boolean.
+ */
+toggleList.prototype.addSubList = function(title, subItems) {
+    // SubList already checks if args make a valid SubList
+    var subList = new SubList(title, subItems);
+
+    // Verify that subList is valid
+    if(subList !== undefined) {
+        this.list.push(subList);
+        return true;
+    }
+    return false;
+};
+
 /* yacollist.js ends here */
