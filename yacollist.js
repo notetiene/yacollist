@@ -233,11 +233,11 @@ ToggleList.prototype.add = function(item) {
  */
 ToggleList.prototype.addSubList = function(title, subItems) {
     // SubList already checks if args make a valid SubList
-    var subList = new SubList(title, subItems);
+    var mySubList = new SubList(title, subItems);
 
     // Verify that subList is valid
-    if(subList !== undefined) {
-        this.list.push(subList);
+    if(mySubList !== undefined) {
+        this.list.push(mySubList);
         return true;
     }
     return false;
