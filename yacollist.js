@@ -165,4 +165,8 @@ SubList.isSubList = function(title, subItems) {
 // For creating a static method
 SubList.prototype.isSubList = SubList.isSubList;
 
+/* ============================================================ */
+/* SubList functions ends here                                  */
+/* ============================================================ */
+
 /* yacollist.js ends here */
