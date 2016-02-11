@@ -169,4 +169,46 @@ SubList.prototype.isSubList = SubList.isSubList;
 /* SubList functions ends here                                  */
 /* ============================================================ */
 
+/**
+ * The toggleList object contains a list of {@linkcode String} and/or of {@link SubList}. SubLists will allow to expand itseld from a title.
+ * @constructor
+ * @param {Array} data - Array of {@linkcode String} and/or {@link SubList}.
+ * @throws {NotArrayError} - Error in arguments.
+ */
+var toggleList = function(data) {
+    if(!isArray(data)) {
+        throw new NotArrayError('Argument list is not a valid Array.');
+    }
+
+    this.list = [];
+    this.hasSubItems = false;
+
+    // Traverse the data array
+    for(var i=0, len=data.length; i<len; i++) {
+        // Always supposed to be String, because we increment i when next is subskill
+        if(!isString(data[i])) {
+            return undefined;
+        }
+        // Verify that i+1 won't be out of bound
+        else if(i+1 >= len) {
+            // Push the remaining String
+            this.list.push(data[i]);
+        }
+        // Verify that next is just a String
+        else if(isString(data[i+1])) {
+            // Push the String
+            this.list.push(data[i]);
+        }
+        else if(SubList.isSubList(data[i], data[i+1])) {
+            this.list.push(new SubList(data[i], data[i+1]));
+            this.hasSubItems = this.hasSubItems || true;
+            // Increment the counter since we already pushed the subskill
+            i++;
+        }
+        else {
+            return undefined;
+        }
+    }
+};
+
 /* yacollist.js ends here */
