@@ -214,7 +214,7 @@ var ToggleList = function(data) {
 /**
  * Add a simple item to the list.
  * @method
- * @param {String} skill - Item added to the list.
+ * @param {String} item - Item added to the list.
  */
 ToggleList.prototype.add = function(item) {
     if(!isString(item)) {
