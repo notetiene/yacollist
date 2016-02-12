@@ -192,17 +192,17 @@ var ToggleList = function(data) {
 
         // Verify that i+1 won't be out of bound
         if(i+1 >= len) {
-            // Push the remaining String and break the loop
+            // Push the remaining String and continue the loop
             // Since it's String and doesn't have next cell
             this.list.push(data[i]);
-            break;
+            continue;
         }
 
         // Verify that next is just a String
         if(isString(data[i+1])) {
             // Push the String
             this.list.push(data[i]);
-            break;
+            continue;
         }
 
         // This is supposed to be a SubList
