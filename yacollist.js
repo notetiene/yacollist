@@ -139,8 +139,7 @@ var SubList = function(title, subItems) {
          */
         this.subItems = subItems;
     } catch(e) {
-        console.log(e.message);
-        return undefined;
+        throw e;
     }
     // Args are valid
 };
