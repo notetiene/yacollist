@@ -187,7 +187,7 @@ var ToggleList = function(data) {
     for(var i=0, len=data.length; i<len; i++) {
         // Always supposed to be String, because we increment i when next is subskill
         if(!isString(data[i])) {
-            return undefined;
+            throw NotStringError('First cell or cell after an Array must should be a String.');
         }
         // Verify that i+1 won't be out of bound
         else if(i+1 >= len) {
@@ -242,5 +242,7 @@ ToggleList.prototype.addSubList = function(title, subItems) {
     }
     return false;
 };
+
+
 
 /* yacollist.js ends here */
