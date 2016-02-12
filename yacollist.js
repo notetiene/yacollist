@@ -193,6 +193,7 @@ var ToggleList = function(data) {
         // Verify that i+1 won't be out of bound
         if(i+1 >= len) {
             // Push the remaining String and break the loop
+            // Since it's String and doesn't have next cell
             this.list.push(data[i]);
             break;
         }
