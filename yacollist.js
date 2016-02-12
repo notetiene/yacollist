@@ -333,6 +333,14 @@ ToggleList.prototype.sortByChar = function(reverse) {
     this.list = list;
 };
 
+/**
+ * @method
+ */
+ToggleList.prototype.sort = function() {
+    this.sortByChar();
+    this.sortByType();
+};
+
 
 
 /* yacollist.js ends here */
