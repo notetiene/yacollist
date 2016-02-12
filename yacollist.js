@@ -187,13 +187,16 @@ var ToggleList = function(data) {
     for(var i=0, len=data.length; i<len; i++) {
         // Always supposed to be String, because we increment i when next is subskill
         if(!isString(data[i])) {
-            throw NotStringError('First cell or cell after an Array must should be a String.');
+            throw new NotStringError('First cell or cell after an Array must should be a String.');
         }
+
         // Verify that i+1 won't be out of bound
-        else if(i+1 >= len) {
-            // Push the remaining String
+        if(i+1 >= len) {
+            // Push the remaining String and break the loop
             this.list.push(data[i]);
+            break;
         }
+
         // Verify that next is just a String
         else if(isString(data[i+1])) {
             // Push the String
