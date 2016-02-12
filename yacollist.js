@@ -341,6 +341,21 @@ ToggleList.prototype.sort = function() {
     this.sortByType();
 };
 
+ToggleList.prototype.setMarkupFormat = function(args) {
+    if(args.listContainer === undefined && args.subItems === undefined && args.subListContainer === undefined &&
+      args.subListTitle === undefined && args.simpleList === undefined) {
+        throw new TypeError('Argument should be an Object.');
+    }
+
+    this.markup = {
+        listContainer: args.listContainer,
+        subItems: args.subItems,
+        subListContainer: args.subListContainer,
+        subListTitle: args.subListTitle,
+        simpleList: args.simpleList
+    };
+};
+
 
 
 /* yacollist.js ends here */
