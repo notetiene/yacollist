@@ -180,7 +180,7 @@ var ToggleList = function(data) {
     }
 
     this.list = [];
-    this.hasSubItems = false;
+    this.subItemsNumber = 0;
 
     // Traverse the data array
     for(var i=0, len=data.length; i<len; i++) {
@@ -209,7 +209,7 @@ var ToggleList = function(data) {
             SubList.isSubList(data[i], data[i+1]);
 
             this.list.push(new SubList(data[i], data[i+1]));
-            this.hasSubItems = this.hasSubItems || true;
+            this.subItemsNumber++;
             // Increment the counter since we already pushed the next cell
             i++;
         }
