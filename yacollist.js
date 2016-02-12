@@ -204,14 +204,23 @@ var ToggleList = function(data) {
             this.list.push(data[i]);
             break;
         }
-        else if(SubList.isSubList(data[i], data[i+1])) {
+
+        // This is supposed to be a SubList
+        try {
+            SubList.isSubList(data[i], data[i+1]);
+
             this.list.push(new SubList(data[i], data[i+1]));
             this.hasSubItems = this.hasSubItems || true;
-            // Increment the counter since we already pushed the subskill
+            // Increment the counter since we already pushed the next cell
             i++;
         }
-        else {
-            return undefined;
+        catch(e) {
+            // Note: we already tested if data[i] was a String
+            if(e instanceof NotArrayStringsError) {
+                e.message = 'A items of a SubList must be an Array of Strings.';
+                throw e;
+            }
+            throw e;
         }
     }
 };
