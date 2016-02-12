@@ -286,5 +286,53 @@ ToggleList.prototype.sortByType = function(reverse) {
     }
 };
 
+/**
+ * Sorts the list alphabetically no matter the type of item. It's case non-sensitive for simplicity.
+ * @method
+ * @param {bool} reverse - Allows to to sort from greater to smaller.
+ * @todo Could probably be converted from "while" to "do while" loop
+ * @todo Implement reverse feature
+ */
+ToggleList.prototype.sortByChar = function(reverse) {
+    var list = this.list.slice();
+    for (var currentCell = 1, len=list.length; currentCell < len; currentCell++) {
+        var tmp = list[currentCell],         // This will not change in for
+        cellComparePosition = currentCell,   // May change in While
+        currentCellTitle = tmp,
+        prevCellValue = '';                  // To compare Strings with Object Title
+
+        // Handle different types of currentItem
+        if(!isString(currentCellTitle)) {
+            currentCellTitle = tmp.title;
+            // TODO: Call function to sort subItems
+        }
+
+        // Note: prevCellValue actually means the next value to test
+        prevCellValue = list[cellComparePosition - 1];
+        if(!isString(prevCellValue)) {
+            prevCellValue = prevCellValue.title;
+        }
+        while (prevCellValue.toLocaleLowerCase() > currentCellTitle.toLocaleLowerCase()) {
+            list[cellComparePosition] = list[cellComparePosition-1];
+
+            --cellComparePosition;
+
+            // Check that it's not out of bound (-1)
+            if(cellComparePosition === 0) {
+                break;
+            }
+
+            // Set the next prevValue when while condition is called again
+            prevCellValue = list[cellComparePosition - 1];
+            if(!isString(prevCellValue)) {
+                prevCellValue = prevCellValue.title;
+            }
+        }
+        list[cellComparePosition] = tmp;
+    }
+    this.list = list;
+};
+
+
 
 /* yacollist.js ends here */
