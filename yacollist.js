@@ -256,6 +256,35 @@ ToggleList.prototype.addSubList = function(title, subItems) {
     return false;
 };
 
+/**
+ * Group SubLists and simple {@linkcode String} items in the list property. By default, subLists are before simple String items.
+ * @method
+ * @param {bool} reverse - Simple {@linkcode String} items are before SubLists.
+ */
+ToggleList.prototype.sortByType = function(reverse) {
+    var simpleItems = [], subLists = [];
+    var list = this.list;
+    var currentItem = '';
+
+    for(var i=0, len=list.length; i<len; i++) {
+        currentItem = list[i];
+
+        if(isString(currentItem)) {
+            simpleItems.push(currentItem);
+        }
+        else {
+            subLists.push(currentItem);
+        }
+    }
+
+    // By default subLists comes before simpleItems
+    if(!reverse) {
+        this.list = subLists.concat(simpleItems);
+    }
+    else {
+        this.list = simpleItems.concat(subLists);
+    }
+};
 
 
 /* yacollist.js ends here */
