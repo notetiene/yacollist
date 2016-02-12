@@ -199,9 +199,10 @@ var ToggleList = function(data) {
         }
 
         // Verify that next is just a String
-        else if(isString(data[i+1])) {
+        if(isString(data[i+1])) {
             // Push the String
             this.list.push(data[i]);
+            break;
         }
         else if(SubList.isSubList(data[i], data[i+1])) {
             this.list.push(new SubList(data[i], data[i+1]));
