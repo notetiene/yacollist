@@ -403,6 +403,19 @@ ToggleList.prototype.setMarkupFormat = function(args) {
     };
 };
 
+/**
+ * Format a single item. Called from the {@link format} method.
+ * @param {String} item - A simple list item (not member of a @link SubList).
+ * @returns {String} A formatted HTML list item.
+ * @throws {NotStringError} - Error in arguments.
+ */
+ToggleList.prototype.formatSingleItem = function(item) {
+    if(!isString(item)) {
+        throw new NotStringError('The passed item: ' + item + ' is not a valid String. #6');
+    }
+    return this.markup.simpleList.replace('%data%', item);
+};
+
 
 
 /* yacollist.js ends here */
