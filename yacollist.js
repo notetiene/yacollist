@@ -262,11 +262,16 @@ var ToggleList = function(data) {
 ToggleList.prototype.markup = {
     listContainer: '<ul class="toggle-list">%data%</ul>',
     simpleList: '<li>%data%</li>',
-    subListTitle: '<a id="sublist-title-%id%" class="sublist-title" role="button">%data%</a>',
+    subListTitle: '<a id="%id%" class="sublist-title" role="button">%data%</a>',
     subListContainer: '<li class="sublist">%title%' +
-        '<ul id="sublist-%id%" class="sublist-inner">%data%</ul>' +
+        '<ul id="%id%" class="sublist-inner">%data%</ul>' +
         '</li>',
-    subItem: '<li class="sublist-item">%data%</li>'
+    subItem: '<li class="sublist-item">%data%</li>',
+    idPrefixes: {
+        title: 'sublist-title-',
+        container: 'sublist-'
+    }
+};
 
 };
 
@@ -451,12 +456,16 @@ ToggleList.prototype.formatSubList = function(subList) {
 
     var referenceId = this.assignedReferenceNumber;
     var formattedTitle = this.markup.subListTitle.replace('%data%', subList.title)
+    // Add the id prefix to the SubList title
+            .replace('%id%', this.markup.idPrefix.title + '%id%')
     // Add a unique ID to the SubList title
             .replace('%id%', referenceId);
 
     var formattedContainer = this.markup.subListContainer
     // Add the title to the SubList container
             .replace('%title%', formattedTitle)
+    // Add the id prefix to the SubList container
+            .replace('%id%', this.markup.idPrefix.container + '%id%')
     // Add a unique ID to the SubList container
             .replace('%id%', referenceId);
 
