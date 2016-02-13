@@ -197,7 +197,14 @@ var ToggleList = function(data) {
     }
 
     this.list = [];
-    this.subItemsNumber = 0;
+
+    // Keep track of entries type
+    this.subListsNumber = 0;
+    this.itemsNumber = 0;
+
+    // This is for assigning unique ID
+    // TODO: Make this variable static?
+    this.assignedReferenceNumber = 0;
 
     // Traverse the data array
     for(var i=0, len=data.length; i<len; i++) {
@@ -211,6 +218,7 @@ var ToggleList = function(data) {
             // Push the remaining String and continue the loop
             // Since it's String and doesn't have next cell
             this.list.push(data[i]);
+            this.itemsNumber++;
             continue;
         }
 
@@ -218,6 +226,7 @@ var ToggleList = function(data) {
         if(isString(data[i+1])) {
             // Push the String
             this.list.push(data[i]);
+            this.itemsNumber++;
             continue;
         }
 
@@ -226,7 +235,8 @@ var ToggleList = function(data) {
             SubList.isSubList(data[i], data[i+1]);
 
             this.list.push(new SubList(data[i], data[i+1]));
-            this.subItemsNumber++;
+            this.itemsNumber++;
+            this.subListNumber++;
             // Increment the counter since we already pushed the next cell
             i++;
         }
@@ -251,6 +261,9 @@ ToggleList.prototype.add = function(item) {
         throw new NotStringError('The item argument is not a valid String. #4');
     }
     this.list.push(item);
+
+    // Keep track of entries type
+    this.itemsNumber++;
 };
 
 
@@ -268,6 +281,11 @@ ToggleList.prototype.addSubList = function(title, subItems) {
     // Verify that subList is valid
     if(mySubList !== undefined) {
         this.list.push(mySubList);
+
+        // Keep track of entries types
+        this.itemsNumber++;
+        this.subListsNumber++;
+
         return true;
     }
     return false;
