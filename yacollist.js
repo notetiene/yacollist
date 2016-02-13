@@ -258,6 +258,7 @@ var ToggleList = function(data) {
  * @property {String} subListTitle - The title of a {@link SubList} objects. It should be a link with href attribute. It must contain the id attribute and a prefix before the {@linkcode %id%} placeholder. It must contain the {@linkcode %data%} placeholder.
  * @property {String} subListContainer - The container of a {@link SubList} list AND a parent list item for the root list container. It must contain the {@linkcode %title%} placeholder before openning the new (un)ordered list conttainer for the {@link SubList.subItems}. It must contain an id attribute on the (un)ordered list container, an id prefix and the {@linkcode %id%} placeholder. The id prefix must be different than {@link subListTitle}. It must contain the {@linkcode %data%} placeholder.
  * @property {String} subItem - A list item for a {@link SubList.subItems} item.
+ * @property {Object} idPrefixes - An object containing a {@linkcode String} title property and a {@linkcode String} container property. It's the prefixes used before {@link ToggleList.assignedReferenceNumber}.
 */
 ToggleList.prototype.markup = {
     listContainer: '<ul class="toggle-list">%data%</ul>',
