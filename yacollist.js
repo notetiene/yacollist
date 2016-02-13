@@ -160,11 +160,21 @@ var SubList = function(title, subItems) {
  * @returns {?bool} True if it’s a valid SubString
  */
 SubList.isSubList = function(title, subItems) {
+    // Only one argument passed means an Object was passed
+    if(arguments.length === 1) {
+        if(arguments[0].title !== undefined && arguments[0].subItems !== undefined) {
+            // We return the value of the call to itself not to execute rest
+            return SubList.isSubList(arguments[0].title, arguments[0].subItems);
+        }
+        return false;
+    }
+    // One arguments ends here
+
     if(!isString(title)) {
-        throw new NotStringError('Argument title is not a valid String.');
+        throw new NotStringError('Argument title is not a valid String. #0');
     }
     if(!isStringArray(subItems)) {
-        throw new NotArrayStringsError('Argument subList is not a valid Array of Strings.');
+        throw new NotArrayStringsError('Argument subList is not a valid Array of Strings. #1');
     }
     return true;
 };
