@@ -42,4 +42,15 @@ utils.isStringArray = function (a) {
     return false;
 };
 
+utils.isValidClassOperation = function(el, htmlClass) {
+    // Verify that it point to an HTMLElement
+    if(!(el instanceof HTMLElement)) {
+        throw new TypeError('The argument el is not an HTMLElement. ##');
+    }
+    // Verify that htmlClass is a String
+    if(!utils.isString(htmlClass)) {
+        throw new NotStringError('The htmlClass argument is not a valid String. ##');
+    }
+};
+
 /* utilities.js ends here */
