@@ -266,6 +266,7 @@ ToggleList.prototype.markup = {
  * Add a simple item to the list.
  * @method
  * @param {String} item - Item added to the list.
+ * @throws {NotStringError} - Error in arguments.
  */
 ToggleList.prototype.add = function(item) {
     if(!isString(item)) {
