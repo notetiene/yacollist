@@ -467,7 +467,7 @@ ToggleList.prototype.formatSubList = function(subList) {
     var referenceId = this.assignedReferenceNumber;
     var formattedTitle = this.markup.subListTitle.replace('%data%', subList.title)
     // Add the id prefix to the SubList title
-            .replace('%id%', this.markup.idPrefix.title + '%id%')
+            .replace('%id%', this.markup.idPrefixes.title + '%id%')
     // Add a unique ID to the SubList title
             .replace('%id%', referenceId);
 
@@ -475,7 +475,7 @@ ToggleList.prototype.formatSubList = function(subList) {
     // Add the title to the SubList container
             .replace('%title%', formattedTitle)
     // Add the id prefix to the SubList container
-            .replace('%id%', this.markup.idPrefix.container + '%id%')
+            .replace('%id%', this.markup.idPrefixes.container + '%id%')
     // Add a unique ID to the SubList container
             .replace('%id%', referenceId);
 
