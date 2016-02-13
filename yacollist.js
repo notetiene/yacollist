@@ -193,7 +193,7 @@ SubList.prototype.isSubList = SubList.isSubList;
  */
 var ToggleList = function(data) {
     if(!isArray(data)) {
-        throw new NotArrayError('Argument list is not a valid Array.');
+        throw new NotArrayError('Argument list is not a valid Array. #2');
     }
 
     this.list = [];
@@ -203,7 +203,7 @@ var ToggleList = function(data) {
     for(var i=0, len=data.length; i<len; i++) {
         // Always supposed to be String, because we increment i when next is subskill
         if(!isString(data[i])) {
-            throw new NotStringError('First cell or cell after an Array must should be a String.');
+            throw new NotStringError('First cell or cell after an Array must should be a String. #3');
         }
 
         // Verify that i+1 won't be out of bound
@@ -248,7 +248,7 @@ var ToggleList = function(data) {
  */
 ToggleList.prototype.add = function(item) {
     if(!isString(item)) {
-        throw 'NotStringError';
+        throw new NotStringError('The item argument is not a valid String. #4');
     }
     this.list.push(item);
 };
@@ -361,7 +361,7 @@ ToggleList.prototype.sort = function() {
 ToggleList.prototype.setMarkupFormat = function(args) {
     if(args.listContainer === undefined && args.subItems === undefined && args.subListContainer === undefined &&
       args.subListTitle === undefined && args.simpleList === undefined) {
-        throw new TypeError('Argument should be an Object.');
+        throw new TypeError('Argument should be an Object. #5');
     }
 
     this.markup = {
