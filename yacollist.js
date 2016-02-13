@@ -138,6 +138,13 @@ var SubList = function(title, subItems) {
          * @private
          */
         this.subItems = subItems;
+
+        /**
+         * @property {int} subItemsNumber - Number of items in {@link subItems}.
+         * @private
+         */
+        this.subItemsNumber = subItems.length;
+
     } catch(e) {
         throw e;
     }
