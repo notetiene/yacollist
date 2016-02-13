@@ -429,6 +429,43 @@ ToggleList.prototype.formatSubListItem = function(item) {
     return this.markup.subItem.replace('%data%', item);
 };
 
+/**
+ * Format a {@link SubList.title} and a {@link SubList.subItems} according to the {@link ToggleList.markup} member Object.
+ * @see ToggleList.markup
+ * @param {} subList
+ * @returns {} A SubList formatted as li for the title and a ul containing subItem in li.
+ * @throws {TypeError} Error in arguments.
+ */
+ToggleList.prototype.formatSubList = function(subList) {
+    if(!SubList.isSubList(subList)) {
+        throw new TypeError('The argument ' + subList + ' is not a valid subList. #8');
+    }
+
+    var referenceId = this.assignedReferenceNumber;
+    var formattedTitle = this.markup.subListTitle.replace('%data%', subList.title)
+    // Add a unique ID to the SubList title
+            .replace('%id%', referenceId);
+
+    var formattedContainer = this.markup.subListContainer
+    // Add the title to the SubList container
+            .replace('%title%', formattedTitle)
+    // Add a unique ID to the SubList container
+            .replace('%id%', referenceId);
+
+    var formattedList = '';
+
+    // For each subItem entries
+    for(var i=0; i<subList.subItemsNumber; i++) {
+        // Use their own formatting
+        formattedList += this.formatSubListItem(subList.subItems[i]);
+    }
+    formattedContainer = formattedContainer.replace('%data%', formattedList);
+
+    this.assignedReferenceNumber++;
+
+    return formattedContainer;
+};
+
 
 
 /* yacollist.js ends here */
