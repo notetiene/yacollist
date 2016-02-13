@@ -416,6 +416,19 @@ ToggleList.prototype.formatSingleItem = function(item) {
     return this.markup.simpleList.replace('%data%', item);
 };
 
+/**
+ * Format a single item part of a Sublist.
+ * @param {} item - A simple list item part of a {SubList} object.
+ * @returns {} A formatted HTML list item to be embedded in a SubList container.
+ * @throws {NotStringError} - Error in arguments.
+ */
+ToggleList.prototype.formatSubListItem = function(item) {
+    if(!isString(item)) {
+        throw new NotStringError('The passed item ' + item + ' is not a valid String. #7');
+    }
+    return this.markup.subItem.replace('%data%', item);
+};
+
 
 
 /* yacollist.js ends here */
