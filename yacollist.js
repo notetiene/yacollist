@@ -273,6 +273,21 @@ ToggleList.prototype.markup = {
     }
 };
 
+ToggleList.prototype.setMarkupFormat = function(args) {
+    if(args.listContainer === undefined && args.subItem === undefined && args.subListContainer === undefined &&
+       args.subListTitle === undefined && args.simpleList === undefined) {
+        throw new TypeError('Argument should be an Object. #5');
+    }
+
+    this.markup = {
+        listContainer: args.listContainer || this.markup.listContainer,
+        subItem: args.subItem || this.markup.subItem,
+        subListContainer: args.subListContainer || this.markup.subListContainer,
+        subListTitle: args.subListTitle || this.markup.subListTitle,
+        simpleList: args.simpleList || this.markupl.simpleList
+    };
+};
+
 };
 
 /**
@@ -399,21 +414,6 @@ ToggleList.prototype.sortByChar = function(reverse) {
 ToggleList.prototype.sort = function() {
     this.sortByChar();
     this.sortByType();
-};
-
-ToggleList.prototype.setMarkupFormat = function(args) {
-    if(args.listContainer === undefined && args.subItem === undefined && args.subListContainer === undefined &&
-      args.subListTitle === undefined && args.simpleList === undefined) {
-        throw new TypeError('Argument should be an Object. #5');
-    }
-
-    this.markup = {
-        listContainer: args.listContainer,
-        subItem: args.subItem,
-        subListContainer: args.subListContainer,
-        subListTitle: args.subListTitle,
-        simpleList: args.simpleList
-    };
 };
 
 /**
