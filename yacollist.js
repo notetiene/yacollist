@@ -1,4 +1,4 @@
-/* yacollist.js --- Yet Another Collapse List
+/* yacollist.js --- Yet Another Expand/Collapse List
  Commentary:
  Code:
  */
