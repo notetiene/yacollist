@@ -271,7 +271,8 @@ ToggleList.prototype.markup = {
     idPrefixes: {
         title: 'sublist-title-',
         container: 'sublist-'
-    }
+    },
+    expandClass: 'sublist-expanded'
 };
 
 ToggleList.prototype.setMarkupFormat = function(args) {
@@ -298,6 +299,14 @@ ToggleList.prototype.setIdPrefixes = function(prefixes) {
         title: prefixes.title || this.markup.idPrefixes.title,
         container: prefixes.container || this.markup.idPrefixes.container
     };
+};
+
+ToggleList.prototype.setExpandedClass = function(className) {
+    if(!isString(className)) {
+        throw new NotStringError('Argument className should be a String. ##');
+    }
+
+    this.markup.expandClass = className || this.markup.expandClass;
 };
 
 /**
