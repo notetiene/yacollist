@@ -389,14 +389,14 @@ ToggleList.prototype.sort = function() {
 };
 
 ToggleList.prototype.setMarkupFormat = function(args) {
-    if(args.listContainer === undefined && args.subItems === undefined && args.subListContainer === undefined &&
+    if(args.listContainer === undefined && args.subItem === undefined && args.subListContainer === undefined &&
       args.subListTitle === undefined && args.simpleList === undefined) {
         throw new TypeError('Argument should be an Object. #5');
     }
 
     this.markup = {
         listContainer: args.listContainer,
-        subItems: args.subItems,
+        subItem: args.subItem,
         subListContainer: args.subListContainer,
         subListTitle: args.subListTitle,
         simpleList: args.simpleList
