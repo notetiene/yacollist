@@ -251,6 +251,17 @@ var ToggleList = function(data) {
     }
 };
 
+ToggleList.prototype.markup = {
+    listContainer: '<ul class="toggle-list">%data%</ul>',
+    simpleList: '<li>%data%</li>',
+    subListTitle: '<a id="sublist-title-%id%" class="sublist-title" role="button">%data%</a>',
+    subListContainer: '<li class="sublist">%title%' +
+        '<ul id="sublist-%id%" class="sublist-inner">%data%</ul>' +
+        '</li>',
+    subItem: '<li class="sublist-item">%data%</li>'
+
+};
+
 /**
  * Add a simple item to the list.
  * @method
