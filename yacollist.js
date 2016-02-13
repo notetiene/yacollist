@@ -466,6 +466,43 @@ ToggleList.prototype.formatSubList = function(subList) {
     return formattedContainer;
 };
 
+/**
+ * Format a whole ToggleList object according to {@link ToggleList.markup} object.
+ * @returns {String} - Formatted ToggleList object as an HTML list.
+ * @throws {TypeError} - The ToggleList is corrupted or invalid.
+ */
+ToggleList.prototype.format = function() {
+    var formattedContainer = this.markup.listContainer;
+    var formattedList = '',
+        // This is for readabiliy
+        currentObject = '';
+
+    try {
+        for(var i=0, len=this.itemsNumber; i<len; i++) {
+            currentObject = this.list[i];
+
+            // Format according to the type
+            if(currentObject instanceof SubList) {
+                formattedList += this.formatSubList(currentObject);
+            }
+            else if(isString(currentObject)) {
+                formattedList += this.formatSingleItem(currentObject);
+            }
+            // There are only two options, but someone may use the library badly
+            else {
+                throw new TypeError('The ToggleList contains invalid values. #9');
+            }
+        }
+        formattedContainer = formattedContainer.replace('%data%', formattedList);
+    }
+    catch(e) {
+        console.log(e.message);
+        throw e;
+    }
+
+    // All operations passed
+    return formattedContainer;
+};
 
 
 /* yacollist.js ends here */
