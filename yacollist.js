@@ -288,6 +288,15 @@ ToggleList.prototype.setMarkupFormat = function(args) {
     };
 };
 
+ToggleList.prototype.setIdPrefixes = function(prefixes) {
+    if(prefixes.title === undefined && prefixes.container) {
+        throw new TypeError('Argument should be an Object. #6');
+    }
+
+    this.markup.idPrefixes= {
+        title: prefixes.title || this.markup.idPrefixes.title,
+        container: prefixes.container || this.markup.idPrefixes.container
+    };
 };
 
 /**
