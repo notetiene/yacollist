@@ -243,7 +243,7 @@ var ToggleList = function(data) {
         catch(e) {
             // Note: we already tested if data[i] was a String
             if(e instanceof NotArrayStringsError) {
-                e.message = 'A items of a SubList must be an Array of Strings.';
+                e.message = 'A items of a SubList must be an Array of Strings. #4';
                 throw e;
             }
             throw e;
@@ -307,7 +307,7 @@ ToggleList.prototype.setIdPrefixes = function(prefixes) {
  */
 ToggleList.prototype.add = function(item) {
     if(!isString(item)) {
-        throw new NotStringError('The item argument is not a valid String. #4');
+        throw new NotStringError('The item argument is not a valid String. #7');
     }
     this.list.push(item);
 
@@ -433,7 +433,7 @@ ToggleList.prototype.sort = function() {
  */
 ToggleList.prototype.formatSingleItem = function(item) {
     if(!isString(item)) {
-        throw new NotStringError('The passed item: ' + item + ' is not a valid String. #6');
+        throw new NotStringError('The passed item: ' + item + ' is not a valid String. #8');
     }
     return this.markup.simpleList.replace('%data%', item);
 };
@@ -446,7 +446,7 @@ ToggleList.prototype.formatSingleItem = function(item) {
  */
 ToggleList.prototype.formatSubListItem = function(item) {
     if(!isString(item)) {
-        throw new NotStringError('The passed item ' + item + ' is not a valid String. #7');
+        throw new NotStringError('The passed item ' + item + ' is not a valid String. #9');
     }
     return this.markup.subItem.replace('%data%', item);
 };
@@ -460,7 +460,7 @@ ToggleList.prototype.formatSubListItem = function(item) {
  */
 ToggleList.prototype.formatSubList = function(subList) {
     if(!SubList.isSubList(subList)) {
-        throw new TypeError('The argument ' + subList + ' is not a valid subList. #8');
+        throw new TypeError('The argument ' + subList + ' is not a valid subList. #10');
     }
 
     var referenceId = this.assignedReferenceNumber;
@@ -516,7 +516,7 @@ ToggleList.prototype.format = function() {
             }
             // There are only two options, but someone may use the library badly
             else {
-                throw new TypeError('The ToggleList contains invalid values. #9');
+                throw new TypeError('The ToggleList contains invalid values. #11');
             }
         }
         formattedContainer = formattedContainer.replace('%data%', formattedList);
