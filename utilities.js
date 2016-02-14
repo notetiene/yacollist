@@ -65,6 +65,7 @@ utils.isValidClassOperation = function(el, htmlClass) {
  * @param {String} value - The CSS property value.
  * @returns {bool} - True if valid.
  * @throws {CSSPropertySyntaxError} - CSS property value was malformed.
+ * @see CSSPropertySyntaxError
  * @todo Maybe we should include properties
  */
 utils.isValidCSSSyntax = function(property, value) {
@@ -87,6 +88,8 @@ utils.isValidCSSSyntax = function(property, value) {
  * @param {HTMLElement} el - Element to verify the presence of class (user is responsible for implementing the selector).
  * @param {String} htmlClass - A class to check the presence in the in the element.
  * @returns {bool} Status of the function.
+ * @see utils.addClass
+ * @see utils.removeClass
  */
 utils.hasClass = function(el, htmlClass) {
     var status = false;
@@ -126,8 +129,8 @@ utils.hasClass = function(el, htmlClass) {
  * @param {String} htmlClass - The class to remove from the element.
  * @returns {bool} The status of the function (if the class was found and removed).
  * @throws {TypeError|NotStringError} - Errors from {@link utils.isValidClassOperation}.
- * @see utils.hasClass
  * @see utils.addClass
+ * @see utils.hasClass
  */
 utils.removeClass = function (el, htmlClass) {
     // Verify that arguments are valid
