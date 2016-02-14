@@ -43,8 +43,8 @@ utils.isStringArray = function (a) {
 };
 
 /**
- * Test that el is an HTMLElement and that htmlClass is a String. Used by class operation functions.
- * @param {} el - An HTMLElement (user is responsible to implement the selector).
+ * Test that {@link el} is an {@linkcode HTMLElement} and that {@link htmlClass} is a {@linkcode String}. Used by class operation functions.
+ * @param {} el - An {@linkcode HTMLElement} (user is responsible for implementing the selector).
  * @param {} htmlClass - A string containing the class to operate on.
  * @throws {TypeError|NotStringError} - The argument are not valid for making operations.
  */
