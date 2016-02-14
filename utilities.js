@@ -120,4 +120,54 @@ utils.hasClass = function(el, htmlClass) {
     return status;
 };
 
+/**
+ * Remove a class from the class attribute of an {@linkcode HTMLElement}. It removes the class attribute if it becomes void.
+ * @param {HTMLElement} el - The element to remove the class.
+ * @param {String} htmlClass - The class to remove from the element.
+ * @returns {bool} The status of the function (if the class was found and removed).
+ * @throws {TypeError|NotStringError} - Errors from {@link utils.isValidClassOperation}.
+ * @see utils.hasClass
+ * @see utils.addClass
+ */
+utils.removeClass = function (el, htmlClass) {
+    // Verify that arguments are valid
+    try {
+        this.isValidClassOperation(el, htmlClass);
+    }
+    catch(e) {
+        throw e;
+    }
+
+    var classes = el.getAttribute('class');
+    var isFound = false;
+
+    // Verify the class attribute is not void
+    if(classes === null || classes === '') {
+        return isFound;
+    }
+
+    // Split the String into an Array of Strings to compare our class
+    classes = classes.split(' ');
+
+    for(var i=0, len=classes.length; i<len; i++) {
+        if(classes[i].localeCompare(htmlClass) === 0) {
+            classes[i] = '';
+            isFound = true;
+            break;
+        }
+    }
+
+    // Join all the classes to set the class attribute
+    classes = classes.join(' ');
+
+    // If the class attribute is now void, remove it
+    if(classes === '') {
+        el.removeAttribute('class');
+        return isFound;
+    }
+
+    el.setAttribute('class', classes);
+    return isFound;
+};
+
 /* utilities.js ends here */
