@@ -81,4 +81,43 @@ utils.isValidCSSSyntax = function(property, value) {
     }
 };
 
+
+/**
+ * Verify that an {@linkcode HTMLElement} has a given class in its class attribute.
+ * @param {HTMLElement} el - Element to verify the presence of class (user is responsible for implementing the selector).
+ * @param {String} htmlClass - A class to check the presence in the in the element.
+ * @returns {bool} Status of the function.
+ */
+utils.hasClass = function(el, htmlClass) {
+    var status = false;
+
+    try {
+        this.isValidClassOperation(el, htmlClass);
+    }
+    catch(e) {
+        console.log(e);
+        return status;
+    }
+
+    var classes = el.getAttribute('class');
+
+    // Verify the class attribute is not void
+    if(classes === null) {
+        return status;
+    }
+
+    // Split classes into an array
+    classes = classes.split(' ');
+
+    // Go thru the array of classes
+    for(var i=0, len=classes.length; i<len; i++) {
+        if(htmlClass.localeCompare(classes[i]) === 0) {
+            status
+            return status;
+        }
+    }
+    // htmlClass wasn't found
+    return status;
+};
+
 /* utilities.js ends here */
