@@ -53,4 +53,26 @@ utils.isValidClassOperation = function(el, htmlClass) {
     }
 };
 
+/**
+ * Verify that a given property value is not void or null.
+ * @param {String} property - The CSS property.
+ * @param {String} value - The CSS property value.
+ * @returns {bool} - True if valid.
+ * @throws {CSSPropertySyntaxError} - CSS property value was malformed.
+ * @todo Maybe we should include properties
+ */
+utils.isValidCSSSyntax = function(property, value) {
+    // Check if value is not void
+    if(value === undefined || value === '') {
+        throw new CSSPropertySyntaxError('The CSS property ' + property + ' has a syntax error. ##');
+    }
+    // Check if value is just white characters (spaces)
+    if(value.search(/\s+$/) !== -1) {
+        throw new CSSPropertySyntaxError('The CSS property ' + property + ' doesn\'t have a value. ##');
+    }
+    else {
+        return true;
+    }
+};
+
 /* utilities.js ends here */
