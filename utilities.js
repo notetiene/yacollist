@@ -94,7 +94,7 @@ utils.hasClass = function(el, htmlClass) {
     // Go thru the array of classes
     for(var i=0, len=classes.length; i<len; i++) {
         if(htmlClass.localeCompare(classes[i]) === 0) {
-            status
+            status = true;
             return status;
         }
     }
