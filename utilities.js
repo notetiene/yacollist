@@ -63,34 +63,6 @@ utils.isValidClassOperation = function(el, htmlClass) {
 };
 
 /**
- * Verify that a given property value is not void or null.
- * @param {String} property - The CSS property.
- * @param {String} value - The CSS property value.
- * @returns {bool} - True if valid.
- * @throws {CSSPropertySyntaxError} - CSS property value was malformed.
- * @see CSSPropertySyntaxError
- * @todo Maybe we should include properties
- */
-utils.isValidCSSSyntax = function(property, value) {
-    // Check if value is not void
-    if(value === undefined || value === '') {
-        throw new CSSPropertySyntaxError('The CSS property ' + property + ' has a syntax error. ##');
-    }
-    // Check that there's no illegal chars
-    if(property.search(':|;' !== -1) || value.search(':|;' !== -1)) {
-        throw new CSSPropertySyntaxError('The CSS property ' + property + ' has a syntax error. ##');
-    }
-    // Check if value is just white characters (spaces)
-    if(value.search(/\s+$/) !== -1) {
-        throw new CSSPropertySyntaxError('The CSS property ' + property + ' doesn\'t have a value. ##');
-    }
-    else {
-        return true;
-    }
-};
-
-
-/**
  * Verify that an {@linkcode HTMLElement} has a given class in its class attribute.
  * @param {HTMLElement} el - Element to verify the presence of class (user is responsible for implementing the selector).
  * @param {String} htmlClass - A class to check the presence in the in the element.
