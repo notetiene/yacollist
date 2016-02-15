@@ -28,6 +28,7 @@ utils.isArray = function (a) {
  * @param {Object} a - A variable to test.
  * @see isString
  * @returns {bool} True if an Array of String.
+ * @todo Test if the String is empty
  */
 utils.isStringArray = function (a) {
     if(utils.isArray(a)) {
