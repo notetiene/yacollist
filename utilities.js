@@ -74,6 +74,10 @@ utils.isValidCSSSyntax = function(property, value) {
     if(value === undefined || value === '') {
         throw new CSSPropertySyntaxError('The CSS property ' + property + ' has a syntax error. ##');
     }
+    // Check that there's no illegal chars
+    if(property.search(':|;' !== -1) || value.search(':|;' !== -1)) {
+        throw new CSSPropertySyntaxError('The CSS property ' + property + ' has a syntax error. ##');
+    }
     // Check if value is just white characters (spaces)
     if(value.search(/\s+$/) !== -1) {
         throw new CSSPropertySyntaxError('The CSS property ' + property + ' doesn\'t have a value. ##');
