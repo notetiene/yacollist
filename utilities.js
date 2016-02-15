@@ -152,4 +152,48 @@ utils.removeClass = function (el, htmlClass) {
     return isFound;
 };
 
+/**
+ * Set the CSS height of an given {@linkcode HTMLElement}.
+ * @param {HTMLElement} el - The selected element to set the height (user is responsible for implementing the selector).
+ * @param {int|String} height - The height in CSS pixel to set. The px suffix is not necessary.
+ * @returns {bool} Return status of the function.
+ * @throws {CSSPropertySyntaxError} - Errors from {@link utils.isValidClassOperation}.
+ * @see CSSPropertySyntaxError
+ * @see utils.addClass
+ * @see utils.hasClass
+ * @see utils.removeClass
+ */
+utils.setHeight = function(el, height) {
+    // Extract CSS properties inside the style attribute
+    var styleAttribute = el.getAttribute('style');
+    // Transform height into string
+    height = height.toString();
+    // If we found height in the CSS properties
+    var parser;
+    var status = false;
+
+    // Search if the px suffix if already there
+    if(height.search(/\s*[0-9]px\s*/) === -1) {
+        height = height + 'px';
+    }
+    // Check that it's not void or empty
+    if(styleAttribute === null || styleAttribute === '') {
+        styleAttribute = 'height: ' + height + ';';
+        el.setAttribute('style', styleAttribute);
+        // No more work is needed
+        status = true;
+        return status;
+    }
+
+    try {
+        parser = new CSSParser(styleAttribute);
+        parser.setProperty('height', height);
+    }
+    catch(e) {
+        console.log(e.message);
+    }
+
+    return status;
+};
+
 /* utilities.js ends here */
