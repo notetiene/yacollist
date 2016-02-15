@@ -1,3 +1,5 @@
+/*global isString, NotStringError */
+
 /* utilities.js --- Utilities for Yet Another Expand/Collapse List (yacollist)
  Commentary:
  Code:
