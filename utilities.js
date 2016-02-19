@@ -1,4 +1,4 @@
-/*global isString, NotStringError */
+/*global NotStringError, CSSParser */
 
 /* utilities.js --- Utilities for Yet Another Expand/Collapse List (yacollist)
  Commentary:
@@ -100,6 +100,16 @@ utils.hasClass = function(el, htmlClass) {
     }
     // htmlClass wasn't found
     return status;
+};
+
+/**
+ * Add a class in the class attribute of an {@linkcode HTMLElement}.
+ * @param {HTMLElement} el - The element to add the class to.
+ * @param {String} htmlClass - The class to add to the element.
+ * Note: Can't call again isValidClassOperation if we call hasClass.
+ */
+utils.addClass = function(el, htmlClass) {
+
 };
 
 /**
