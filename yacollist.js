@@ -122,7 +122,7 @@ var ToggleList = function(data) {
 
             this.list.push(new SubList(data[i], data[i+1]));
             this.itemsNumber++;
-            this.subListNumber++;
+            this.subListsNumber++;
             // Increment the counter since we already pushed the next cell
             i++;
         }
