@@ -40,7 +40,7 @@ function NotArrayError(message) {
      * @constant
      * @public
      */
-    this.name = 'NotArrayStringsError';
+    this.name = 'NotArrayError';
 
     /**
      * @property {String} message - Human-readable description of the error.
