@@ -428,4 +428,62 @@ ToggleList.prototype.format = function() {
 };
 
 
+/**
+ * Expand the given SubList from the list and close the one open (if any).
+ * @param {int} number - Nth SubList in the list.
+ */
+ToggleList.prototype.expandSubList = function(number) {
+
+    /* IDs for the SubList title and container */
+    var ids = {
+        title: this.markup.idPrefixes.title + number,
+        container: this.markup.idPrefixes.container + number
+    };
+
+    var titleId = document.getElementById(ids.title);
+    var containerId = document.getElementById(ids.container);
+    var height = containerId.getElementsByClassName('sublist-inner')
+            .offsetHeight();
+    var expandClass = this.markup.expandClass;
+    var status = false;
+
+    // Check that titleId and containerId exists (not null)
+    if(titleId === null || titleId === undefined || containerId === null || containerId === undefined) {
+        return status;
+    }
+
+    // Check if the current clicked element is already open
+    if(utils.hasClass(containerId, expandClass)) {
+        // Close the current clicked element
+        utils.removeClass(expandClass);
+        status = true;
+        return status;
+    }
+};
+
+
+/**
+ * Add an onclick event on the given SubList identified with the ordering number.
+ * @param {int} number - Number of the SubList.
+ */
+ToggleList.prototype.addEventToSubListTitle = function(number) {
+    /* Convert number to string */
+    number = number.toString();
+    var identifier = this.markup.idPrefixes.title + number;
+
+    console.log('In function addEventToSubListTitle');
+
+    document.getElementById(identifier).addEventListener('click', function() {
+        /* Call function expandSubList on SubList title click */
+        this.expandSubList(number);
+        console.log('#' + identifier + ' activated expandSubList');
+    });
+    console.log('Add click event listener to ' + identifier);
+};
+
+ToggleList.prototype.addEventToMembers = function() {
+    for(var i=0, len=this.subListsNumber; i<len; i++) {
+        this.addEventToSubListTitle(i);
+    }
+};
 /* yacollist.js ends here */
