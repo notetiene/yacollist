@@ -152,7 +152,7 @@ ToggleList.prototype.markup = {
     simpleList: '<li>%data%</li>',
     subListTitle: '<a id="%id%" class="sublist-title" role="button">%data%</a>',
     subListContainer: '<li class="sublist">%title%' +
-        '<ul id="%id%" class="sublist-inner">%data%</ul>' +
+        '<div id="%id%" class="sublist-outer"><ul class="sublist-inner">%data%</ul></div>' +
         '</li>',
     subItem: '<li class="sublist-item">%data%</li>',
     expandClass: 'sublist-expanded',
