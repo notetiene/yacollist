@@ -46,23 +46,6 @@ utils.isStringArray = function (a) {
 };
 
 /**
- * Test that {@link el} is an {@linkcode HTMLElement} and that {@link htmlClass} is a {@linkcode String}. Used by class operation functions.
- * @param {} el - An {@linkcode HTMLElement} (user is responsible for implementing the selector).
- * @param {} htmlClass - A string containing the class to operate on.
- * @throws {TypeError|NotStringError} - The argument are not valid for making operations.
- */
-utils.isValidClassOperation = function(el, htmlClass) {
-    // Verify that it point to an HTMLElement
-    if(!(el instanceof HTMLElement)) {
-        throw new TypeError('The argument el is not an HTMLElement. ##');
-    }
-    // Verify that htmlClass is a String
-    if(!utils.isString(htmlClass)) {
-        throw new NotStringError('The htmlClass argument is not a valid String. ##');
-    }
-};
-
-/**
  * Verify that an {@linkcode HTMLElement} has a given class in its class attribute.
  * @param {HTMLElement} el - Element to verify the presence of class (user is responsible for implementing the selector).
  * @param {String} htmlClass - A class to check the presence in the in the element.
