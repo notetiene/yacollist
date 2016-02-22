@@ -1,5 +1,7 @@
 /* yacollist.js --- Yet Another Expand/Collapse List
  Commentary:
+   TODO: Add event queue to be processed after DOMContentLoaded (since it's a lib not playing with DOM)
+   TODO: Add a polyfill for the DOMContentLoaded for IE
  Code:
  */
 
