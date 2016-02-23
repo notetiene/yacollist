@@ -1,5 +1,6 @@
 /* sublist.js --- SubList object for yacollist
  Commentary:
+   TODO: Add setter/getter methods?
  Code:
  */
 
