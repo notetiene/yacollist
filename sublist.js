@@ -17,7 +17,6 @@ var SubList = function(title, subItems) {
          * The title that expands the subList.
          * @property title
          * @type String
-         * @private
          * @default title
          */
         this.title = title;
@@ -26,7 +25,6 @@ var SubList = function(title, subItems) {
          * Items of the subList.
          * @property subItems
          * @type String[]
-         * @private
          * @default subItems
          */
         this.subItems = subItems;
@@ -35,7 +33,6 @@ var SubList = function(title, subItems) {
          * Number of items in {@link subItems}.
          * @property subItemsNumber
          * @type int
-         * @private
          * @default subItems.length
          */
         this.subItemsNumber = subItems.length;

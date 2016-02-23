@@ -15,11 +15,11 @@ var CSSParser = function(thecss) {
     try {
         /**
          * Array of pair of {@linkcode String} containing the CSS properties/values.
-         * @property styles
+         * @property _styles
          * @type Array.<String[]>
          * @private
          */
-        this.styles = this.makePropertyList(thecss);
+        this._styles = this.makePropertyList(thecss);
     }
     catch(e) {
         throw e;
@@ -115,8 +115,8 @@ CSSParser.prototype.makePropertyList = function(css) {
 CSSParser.prototype.findPropertyIndex = function(property, value) {
     try {
         this.isValidSyntax(property, value || 'blank');
-        for(var i=0, len=this.styles.length; i<len; i++) {
-            if(this.styles[i][0] === property) {
+        for(var i=0, len=this._styles.length; i<len; i++) {
+            if(this._styles[i][0] === property) {
                 // Return the index of the property
                 return i;
             }
@@ -143,10 +143,10 @@ CSSParser.prototype.setProperty = function(property, value) {
         index = this.findPropertyIndex(property, value);
         if(index === -1) {
             // Add the property at the end
-            this.styles.push([property, value]);
+            this._styles.push([property, value]);
         }
         else {
-            this.styles[index][1] = value;
+            this._styles[index][1] = value;
         }
     }
     catch(e) {
@@ -168,7 +168,7 @@ CSSParser.prototype.getProperty = function(property) {
             // Property wasn't found
             return index;
         }
-        value = this.styles[index][1];
+        value = this._styles[index][1];
     }
     catch(e) {
         throw e;
@@ -177,12 +177,12 @@ CSSParser.prototype.getProperty = function(property) {
 };
 
 CSSParser.prototype.toString = function() {
-    var styles = this.styles,
+    var styles = this._styles,
     thecss = '';
     for(var i=0, len=styles.length; i<len; i++) {
         thecss += styles[i][0] + ':' + styles[i][1] + ';';
     }
-    console.log(this.styles);
+    console.log(this._styles);
     return thecss;
 };
 

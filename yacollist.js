@@ -19,40 +19,40 @@ var ToggleList = function(data) {
 
     /**
      * The list containing SubList and simple list items.
-     * @property list
+     * @property _list
      * @type Array
      * @private
      * @default []
      */
-   this.list = [];
+   this._list = [];
 
     /**
-     * The number of subLists in {@linkcode ToggleList.list} to keep track of entry types.
-     * @property subListsNumber
+     * The number of subLists in {@linkcode ToggleList._list} to keep track of entry types.
+     * @property _subListsNumber
      * @type int
      * @private
      * @default 0
      */
-    this.subListsNumber = 0;
+    this._subListsNumber = 0;
 
     /**
-     * The number of items the {@linkcode ToggleList.list} member contains.
-     * @property itemsNumber
+     * The number of items the {@linkcode ToggleList._list} member contains.
+     * @property _itemsNumber
      * @type int
      * @private
      * @default 0
      */
-    this.itemsNumber = 0;
+    this._itemsNumber = 0;
 
     /**
      * The number of unique reference number assigned to SubList members.
-     * @property assignedReferenceNumber
+     * @property _assignedReferenceNumber
      * @type int
      * @private
      * @default 0
      * @todo Make this variable static?
      */
-    this.assignedReferenceNumber = 0;
+    this._assignedReferenceNumber = 0;
 
     // Traverse the data array
     for(var i=0, len=data.length; i<len; i++) {
@@ -65,16 +65,16 @@ var ToggleList = function(data) {
         if(i+1 >= len) {
             // Push the remaining String and continue the loop
             // Since it's String and doesn't have next cell
-            this.list.push(data[i]);
-            this.itemsNumber++;
+            this._list.push(data[i]);
+            this._itemsNumber++;
             continue;
         }
 
         // Verify that next is just a String
         if(typeok.isString(data[i+1])) {
             // Push the String
-            this.list.push(data[i]);
-            this.itemsNumber++;
+            this._list.push(data[i]);
+            this._itemsNumber++;
             continue;
         }
 
@@ -82,9 +82,9 @@ var ToggleList = function(data) {
         try {
             SubList.isSubList(data[i], data[i+1]);
 
-            this.list.push(new SubList(data[i], data[i+1]));
-            this.itemsNumber++;
-            this.subListsNumber++;
+            this._list.push(new SubList(data[i], data[i+1]));
+            this._itemsNumber++;
+            this._subListsNumber++;
             // Increment the counter since we already pushed the next cell
             i++;
         }
@@ -168,10 +168,10 @@ ToggleList.prototype.add = function(item) {
     if(!typeok.isString(item)) {
         throw new NotStringError('The item argument is not a valid String. #7');
     }
-    this.list.push(item);
+    this._list.push(item);
 
     // Keep track of entries type
-    this.itemsNumber++;
+    this._itemsNumber++;
 };
 
 
@@ -188,11 +188,11 @@ ToggleList.prototype.addSubList = function(title, subItems) {
 
     // Verify that subList is valid
     if(mySubList !== undefined) {
-        this.list.push(mySubList);
+        this._list.push(mySubList);
 
         // Keep track of entries types
-        this.itemsNumber++;
-        this.subListsNumber++;
+        this._itemsNumber++;
+        this._subListsNumber++;
 
         return true;
     }
@@ -206,7 +206,7 @@ ToggleList.prototype.addSubList = function(title, subItems) {
  */
 ToggleList.prototype.sortByType = function(reverse) {
     var simpleItems = [], subLists = [];
-    var list = this.list;
+    var list = this._list;
     var currentItem = '';
 
     for(var i=0, len=list.length; i<len; i++) {
@@ -222,10 +222,10 @@ ToggleList.prototype.sortByType = function(reverse) {
 
     // By default subLists comes before simpleItems
     if(!reverse) {
-        this.list = subLists.concat(simpleItems);
+        this._list = subLists.concat(simpleItems);
     }
     else {
-        this.list = simpleItems.concat(subLists);
+        this._list = simpleItems.concat(subLists);
     }
 };
 
@@ -237,7 +237,7 @@ ToggleList.prototype.sortByType = function(reverse) {
  * @todo Implement reverse feature
  */
 ToggleList.prototype.sortByChar = function(reverse) {
-    var list = this.list.slice();
+    var list = this._list.slice();
     for (var currentCell = 1, len=list.length; currentCell < len; currentCell++) {
         var tmp = list[currentCell],         // This will not change in for
         cellComparePosition = currentCell,   // May change in While
@@ -273,7 +273,7 @@ ToggleList.prototype.sortByChar = function(reverse) {
         }
         list[cellComparePosition] = tmp;
     }
-    this.list = list;
+    this._list = list;
 };
 
 /**
@@ -322,7 +322,7 @@ ToggleList.prototype.formatSubList = function(subList) {
         throw new TypeError('The argument ' + subList + ' is not a valid subList. #10');
     }
 
-    var referenceId = this.assignedReferenceNumber;
+    var referenceId = this._assignedReferenceNumber;
     var formattedTitle = this.markup.subListTitle.replace('%data%', subList.title)
     // Add the id prefix to the SubList title
             .replace('%id%', this.markup.idPrefixes.title + '%id%')
@@ -346,7 +346,7 @@ ToggleList.prototype.formatSubList = function(subList) {
     }
     formattedContainer = formattedContainer.replace('%data%', formattedList);
 
-    this.assignedReferenceNumber++;
+    this._assignedReferenceNumber++;
 
     return formattedContainer;
 };
@@ -363,8 +363,8 @@ ToggleList.prototype.format = function() {
         currentObject = '';
 
     try {
-        for(var i=0, len=this.itemsNumber; i<len; i++) {
-            currentObject = this.list[i];
+        for(var i=0, len=this._itemsNumber; i<len; i++) {
+            currentObject = this._list[i];
 
             // Format according to the type
             if(currentObject instanceof SubList) {
@@ -452,7 +452,7 @@ ToggleList.prototype.addEventToSubListTitle = function(number) {
  * @method
  */
 ToggleList.prototype.addEventToMembers = function() {
-    for(var i=0, len=this.subListsNumber; i<len; i++) {
+    for(var i=0, len=this._subListsNumber; i<len; i++) {
         this.addEventToSubListTitle(i);
     }
 };
