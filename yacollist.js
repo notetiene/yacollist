@@ -442,10 +442,14 @@ ToggleList.prototype.expandSubList = function(number) {
         container: this.markup.idPrefixes.container + number
     };
 
+    // The list item that toggle the SubList
     var titleId = document.getElementById(ids.title);
+    // The hidden container of the SubList
     var containerId = document.getElementById(ids.container);
+    // Actual height of container children
     var height = containerId.getElementsByClassName('sublist-inner')
             .offsetHeight();
+    // Class to mark that a SubList is expanded
     var expandClass = this.markup.expandClass;
     var status = false;
 
