@@ -488,4 +488,5 @@ ToggleList.prototype.addEventToMembers = function() {
         this.addEventToSubListTitle(i);
     }
 };
+
 /* yacollist.js ends here */

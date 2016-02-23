@@ -183,3 +183,5 @@ CSSParser.prototype.toString = function() {
     console.log(this.styles);
     return thecss;
 };
+
+/*  parsecss.js ends here */
