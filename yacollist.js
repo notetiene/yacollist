@@ -240,9 +240,9 @@ ToggleList.prototype.sortByChar = function(reverse) {
     var list = this._list.slice();
     for (var currentCell = 1, len=list.length; currentCell < len; currentCell++) {
         var tmp = list[currentCell],         // This will not change in for
-        cellComparePosition = currentCell,   // May change in While
-        currentCellTitle = tmp,
-        prevCellValue = '';                  // To compare Strings with Object Title
+            cellComparePosition = currentCell,   // May change in While
+            currentCellTitle = tmp,
+            prevCellValue = '';                  // To compare Strings with Object Title
 
         // Handle different types of currentItem
         if(!typeok.isString(currentCellTitle)) {
