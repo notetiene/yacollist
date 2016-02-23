@@ -420,6 +420,10 @@ ToggleList.prototype.addEventToSubListTitle = function(number) {
     console.log('Add click event listener to ' + identifier);
 };
 
+/**
+ * Add event to the queue from member SubLists
+ * @method
+ */
 ToggleList.prototype.addEventToMembers = function() {
     for(var i=0, len=this.subListsNumber; i<len; i++) {
         this.addEventToSubListTitle(i);
