@@ -17,14 +17,29 @@ var ToggleList = function(data) {
         throw new NotArrayError('Argument list is not a valid Array. #2');
     }
 
+    /**
+     * @property {Array} list - The list containing SubList and simple list items.
+     * @private
+     */
     this.list = [];
 
-    // Keep track of entries type
+    /**
+     * @property {int} subListsNumber - The number of subLists in {@linkcode ToggleList.list} to keep track of entry types.
+     * @private
+     */
     this.subListsNumber = 0;
+
+    /**
+     * @property {int} itemsNumber - The number of items the {@linkcode ToggleList.list} member contains.
+     * @private
+     */
     this.itemsNumber = 0;
 
-    // This is for assigning unique ID
-    // TODO: Make this variable static?
+    /**
+     * @property {int} assignedReferenceNumber - The number of unique reference number assigned to SubList members.
+     * @todo Make this variable static?
+     * @private
+     */
     this.assignedReferenceNumber = 0;
 
     // Traverse the data array
@@ -81,7 +96,7 @@ var ToggleList = function(data) {
  * @property {String} subItem - A list item for a {@link SubList.subItems} item.
  * @property {String} expandClass - Class of a SubList container expanded.
  * @property {Object} idPrefixes - An object containing a {@linkcode String} title property and a {@linkcode String} container property. It's the prefixes used before {@link ToggleList.assignedReferenceNumber}.
-*/
+ */
 ToggleList.prototype.markup = {
     listContainer: '<ul class="toggle-list">%data%</ul>',
     simpleList: '<li>%data%</li>',
