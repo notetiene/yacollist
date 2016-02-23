@@ -7,7 +7,7 @@
  * Namespace for functions verifying JavaScript data types.
  * @namespace
  */
-var typeok = {};
+var typeok = typeok | {};
 
 /**
  * Test if the passed argument is a String.

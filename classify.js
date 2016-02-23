@@ -7,7 +7,7 @@
  * Namespace that interact with an HTMLElement
  * @namespace
  */
-var classify = {};
+var classify = classify | {};
 
 /**
  * Test that {@link el} is an {@linkcode HTMLElement} and that {@link htmlClass} is a {@linkcode String}. Used by class operation functions.

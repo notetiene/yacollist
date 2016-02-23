@@ -5,7 +5,7 @@
  Code:
  */
 
-var utils = {};
+var utils = utils | {};
 
 /**
  * Test if the passed argument is a String.
