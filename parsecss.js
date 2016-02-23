@@ -14,7 +14,9 @@
 var CSSParser = function(thecss) {
     try {
         /**
-         * @property {Array.<String[]>} styles - Array of pair of {@linkcode String} containing the CSS properties/values.
+         * Array of pair of {@linkcode String} containing the CSS properties/values.
+         * @property styles
+         * @type Array.<String[]>
          * @private
          */
         this.styles = this.makePropertyList(thecss);
