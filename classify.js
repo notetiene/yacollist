@@ -187,7 +187,6 @@ classify._addClass = function(_el, _htmlClass) {
  * Note: Can't call again isValidClassOperation if we call hasClass.
  */
 classify.addClass = function(el, htmlClass) {
-    var status = -1;
     // Verify that arguments are valid
     try {
         this._isValidOperation(el, htmlClass);
@@ -196,7 +195,8 @@ classify.addClass = function(el, htmlClass) {
         throw e;
     }
 
-    status = this._hasClass(el, htmlClass);
+    return this._hasClass(el, htmlClass);
+};
 
 /**
  * Set the CSS height of an given {@linkcode HTMLElement}.
