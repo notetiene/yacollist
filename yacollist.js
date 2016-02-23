@@ -58,10 +58,10 @@ SubList.isSubList = function(title, subItems) {
     }
     // One arguments ends here
 
-    if(!utils.isString(title)) {
+    if(!typeok.isString(title)) {
         throw new NotStringError('Argument title is not a valid String. #0');
     }
-    if(!utils.isStringArray(subItems)) {
+    if(!typeok.isStringArray(subItems)) {
         throw new NotArrayStringsError('Argument subList is not a valid Array of Strings. #1');
     }
     return true;
@@ -80,7 +80,7 @@ SubList.prototype.isSubList = SubList.isSubList;
  * @throws {NotArrayError} - Error in arguments.
  */
 var ToggleList = function(data) {
-    if(!utils.isArray(data)) {
+    if(!typeok.isArray(data)) {
         throw new NotArrayError('Argument list is not a valid Array. #2');
     }
 
@@ -97,7 +97,7 @@ var ToggleList = function(data) {
     // Traverse the data array
     for(var i=0, len=data.length; i<len; i++) {
         // Always supposed to be String, because we increment i when next is subskill
-        if(!utils.isString(data[i])) {
+        if(!typeok.isString(data[i])) {
             throw new NotStringError('First cell or cell after an Array must should be a String. #3');
         }
 
@@ -111,7 +111,7 @@ var ToggleList = function(data) {
         }
 
         // Verify that next is just a String
-        if(utils.isString(data[i+1])) {
+        if(typeok.isString(data[i+1])) {
             // Push the String
             this.list.push(data[i]);
             this.itemsNumber++;
@@ -191,7 +191,7 @@ ToggleList.prototype.setIdPrefixes = function(prefixes) {
 };
 
 ToggleList.prototype.setExpandedClass = function(className) {
-    if(!utils.isString(className)) {
+    if(!typeok.isString(className)) {
         throw new NotStringError('Argument className should be a String. ##');
     }
 
@@ -205,7 +205,7 @@ ToggleList.prototype.setExpandedClass = function(className) {
  * @throws {NotStringError} - Error in arguments.
  */
 ToggleList.prototype.add = function(item) {
-    if(!utils.isString(item)) {
+    if(!typeok.isString(item)) {
         throw new NotStringError('The item argument is not a valid String. #7');
     }
     this.list.push(item);
@@ -252,7 +252,7 @@ ToggleList.prototype.sortByType = function(reverse) {
     for(var i=0, len=list.length; i<len; i++) {
         currentItem = list[i];
 
-        if(utils.isString(currentItem)) {
+        if(typeok.isString(currentItem)) {
             simpleItems.push(currentItem);
         }
         else {
@@ -285,14 +285,14 @@ ToggleList.prototype.sortByChar = function(reverse) {
         prevCellValue = '';                  // To compare Strings with Object Title
 
         // Handle different types of currentItem
-        if(!utils.isString(currentCellTitle)) {
+        if(!typeok.isString(currentCellTitle)) {
             currentCellTitle = tmp.title;
             // TODO: Call function to sort subItems
         }
 
         // Note: prevCellValue actually means the next value to test
         prevCellValue = list[cellComparePosition - 1];
-        if(!utils.isString(prevCellValue)) {
+        if(!typeok.isString(prevCellValue)) {
             prevCellValue = prevCellValue.title;
         }
         while (prevCellValue.toLocaleLowerCase() > currentCellTitle.toLocaleLowerCase()) {
@@ -307,7 +307,7 @@ ToggleList.prototype.sortByChar = function(reverse) {
 
             // Set the next prevValue when while condition is called again
             prevCellValue = list[cellComparePosition - 1];
-            if(!utils.isString(prevCellValue)) {
+            if(!typeok.isString(prevCellValue)) {
                 prevCellValue = prevCellValue.title;
             }
         }
@@ -331,7 +331,7 @@ ToggleList.prototype.sort = function() {
  * @throws {NotStringError} - Error in arguments.
  */
 ToggleList.prototype.formatSingleItem = function(item) {
-    if(!utils.isString(item)) {
+    if(!typeok.isString(item)) {
         throw new NotStringError('The passed item: ' + item + ' is not a valid String. #8');
     }
     return this.markup.simpleList.replace('%data%', item);
@@ -344,7 +344,7 @@ ToggleList.prototype.formatSingleItem = function(item) {
  * @throws {NotStringError} - Error in arguments.
  */
 ToggleList.prototype.formatSubListItem = function(item) {
-    if(!utils.isString(item)) {
+    if(!typeok.isString(item)) {
         throw new NotStringError('The passed item ' + item + ' is not a valid String. #9');
     }
     return this.markup.subItem.replace('%data%', item);
@@ -410,7 +410,7 @@ ToggleList.prototype.format = function() {
             if(currentObject instanceof SubList) {
                 formattedList += this.formatSubList(currentObject);
             }
-            else if(utils.isString(currentObject)) {
+            else if(typeok.isString(currentObject)) {
                 formattedList += this.formatSingleItem(currentObject);
             }
             // There are only two options, but someone may use the library badly
