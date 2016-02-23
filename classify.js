@@ -1,4 +1,4 @@
-/* classify.js --- Functions operating on the class attribute of an element
+/* classify.js --- Classify object that interact with a HTMLElement properties
  Commentary:
  Code:
  */
