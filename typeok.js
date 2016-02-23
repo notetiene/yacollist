@@ -1,5 +1,5 @@
 /* typeok.js --- Functions verifying JavaScript data types
- Comments:
+ Commentary:
  Code:
  */
 

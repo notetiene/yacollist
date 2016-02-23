@@ -4,7 +4,7 @@
  */
 
 /**
- * Namespace for functions operating on the class attribute of an element.
+ * Namespace that interact with an HTMLElement
  * @namespace
  */
 var classify = {};
@@ -60,7 +60,6 @@ classify._hasClass = function(_el, _htmlClass) {
 
 /**
  * Verify that an {@linkcode HTMLElement} has a given class in its class attribute.
- * @public
  * @param {HTMLElement} el - Element to verify the presence of class (user is responsible for implementing the selector).
  * @param {String} htmlClass - A class to check the presence in the in the element.
  * @returns {int} Status of the function. The position if found (starting at 0) or -1 if not found.
@@ -181,9 +180,10 @@ classify._addClass = function(_el, _htmlClass) {
 
 /**
  * Add a class in the class attribute of an {@linkcode HTMLElement}.
- * @public
  * @param {HTMLElement} el - The element to add the class to.
  * @param {String} htmlClass - The class to add to the element.
+ * @see classify.hasClass
+ * @see classify.removeClass
  * Note: Can't call again isValidClassOperation if we call hasClass.
  */
 classify.addClass = function(el, htmlClass) {
@@ -197,6 +197,15 @@ classify.addClass = function(el, htmlClass) {
     }
 
     status = this._hasClass(el, htmlClass);
+
+/**
+ * Set the CSS height of an given {@linkcode HTMLElement}.
+ * @param {HTMLElement} el - The selected element to set the height (user is responsible for implementing the selector).
+ * @param {int|String} height - The height in CSS pixel to set. The px suffix is not necessary.
+ * @returns {bool} Return status of the function.
+ * @throws {CSSPropertySyntaxError} - Errors from {@link classify.isValidOperation}.
+ * @see CSSPropertySyntaxError
+ */
 };
 
 /*  classify.js ends here */
