@@ -12,6 +12,7 @@
  */
 var SubList = function(title, subItems) {
     try {
+        // Verify that the data entered is valid
         this.isSubList(title, subItems);
 
         /**
