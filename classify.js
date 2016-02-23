@@ -206,6 +206,42 @@ classify.addClass = function(el, htmlClass) {
  * @throws {CSSPropertySyntaxError} - Errors from {@link classify.isValidOperation}.
  * @see CSSPropertySyntaxError
  */
+classify.setHeight = function(el, height) {
+    // Extract CSS properties inside the style attribute
+    var styleAttribute = el.getAttribute('style');
+
+    // Transform height into string
+    height = height.toString();
+
+    // CSSParser instance for modifying height
+    var parser;
+
+    // Status if we found height in the CSS properties
+    var status = false;
+
+    // Search if the "px" suffix isn't there
+    if(height.search(/\s*[0-9]px\s*/) === -1) {
+        height = height + 'px';
+    }
+
+    // Check that if it's void or empty
+    if(styleAttribute === null || styleAttribute === '') {
+        styleAttribute = 'height: ' + height + ';';
+        el.setAttribute('style', styleAttribute);
+        // No more work is needed
+        status = true;
+        return status;
+    }
+
+    try {
+        parser = new CSSParser(styleAttribute);
+        parser.setProperty('height', height);
+    }
+    catch(e) {
+        console.log(e.message);
+    }
+
+    return status;
 };
 
 /*  classify.js ends here */
