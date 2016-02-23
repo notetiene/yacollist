@@ -36,7 +36,7 @@ classify._isValidOperation = function(el, htmlClass) {
  */
 classify._hasClass = function(_el, _htmlClass) {
     var status;
-    var classes = _el.getAttribute('class');
+    var classes = _el.className;
 
     // Verify the class attribute is not void
     if(classes === null) {
@@ -91,7 +91,7 @@ classify.hasClass = function(el, htmlClass) {
  * @returns {int} Status of the function. The position if found (starting at 0) or -1 if not found.
  */
 classify._removeClass = function (_el, _htmlClass) {
-    var classes = _el.getAttribute('class');
+    var classes = _el.className;
     var status = -1;
 
     // Verify that the class attribute exists
@@ -170,7 +170,7 @@ classify._addClass = function(_el, _htmlClass) {
         return -1;
     }
 
-    classes = _el.getAttribute('class');
+    classes = _el.className;
     classes += ' ' + _htmlClass;
 
     // Set the new class attribute
