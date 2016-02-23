@@ -18,27 +18,39 @@ var ToggleList = function(data) {
     }
 
     /**
-     * @property {Array} list - The list containing SubList and simple list items.
+     * The list containing SubList and simple list items.
+     * @property list
+     * @type Array
      * @private
+     * @default []
      */
-    this.list = [];
+   this.list = [];
 
     /**
-     * @property {int} subListsNumber - The number of subLists in {@linkcode ToggleList.list} to keep track of entry types.
+     * The number of subLists in {@linkcode ToggleList.list} to keep track of entry types.
+     * @property subListsNumber
+     * @type int
      * @private
+     * @default 0
      */
     this.subListsNumber = 0;
 
     /**
-     * @property {int} itemsNumber - The number of items the {@linkcode ToggleList.list} member contains.
+     * The number of items the {@linkcode ToggleList.list} member contains.
+     * @property itemsNumber
+     * @type int
      * @private
+     * @default 0
      */
     this.itemsNumber = 0;
 
     /**
-     * @property {int} assignedReferenceNumber - The number of unique reference number assigned to SubList members.
-     * @todo Make this variable static?
+     * The number of unique reference number assigned to SubList members.
+     * @property assignedReferenceNumber
+     * @type int
      * @private
+     * @default 0
+     * @todo Make this variable static?
      */
     this.assignedReferenceNumber = 0;
 
