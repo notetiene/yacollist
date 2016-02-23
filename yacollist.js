@@ -54,6 +54,13 @@ var ToggleList = function(data) {
      */
     this._assignedReferenceNumber = 0;
 
+    /**
+     * A queue of events to register.
+     * @property _eventsQueue
+     * @type
+     * @private
+     */
+
     // Traverse the data array
     for(var i=0, len=data.length; i<len; i++) {
         // Always supposed to be String, because we increment i when next is subskill
