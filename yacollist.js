@@ -2,6 +2,7 @@
  Commentary:
    TODO: Add event queue to be processed after DOMContentLoaded (since it's a lib not playing with DOM)
    TODO: Add a polyfill for the DOMContentLoaded for IE
+   TODO: Add a generic list "Yacollist"
  Code:
  */
 
