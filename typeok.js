@@ -38,7 +38,7 @@ typeok.isStringArray = function (a) {
     if(this.isArray(a)) {
         // Traverse the Array to verify they are all Strings.
         for(var i=0, l = a.length; i<l; i++) {
-            if(!utils.isString(a[i])) {
+            if(!this.isString(a[i])) {
                 return false;
             }
         }
