@@ -14,7 +14,7 @@ var typeok = typeok || {};
  * @param {Object} s - A variable to test.
  * @returns {bool} True if a String.
  */
-typeok.prototype.isString = function (s) {
+typeok.isString = function (s) {
     return (s instanceof String || typeof s === 'string');
 };
 
@@ -23,7 +23,7 @@ typeok.prototype.isString = function (s) {
  * @param {Object} a - A variable to test.
  * @returns {bool} True if an Array.
  */
-typeok.prototype.isArray = function (a) {
+typeok.isArray = function (a) {
     return (a instanceof Array && a.length > 0);
 };
 
@@ -34,7 +34,7 @@ typeok.prototype.isArray = function (a) {
  * @returns {bool} True if an Array of String.
  * @todo Test if the String is empty
  */
-typeok.prototype.isStringArray = function (a) {
+typeok.isStringArray = function (a) {
     if(this.isArray(a)) {
         // Traverse the Array to verify they are all Strings.
         for(var i=0, l = a.length; i<l; i++) {
