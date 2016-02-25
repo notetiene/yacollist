@@ -426,9 +426,9 @@ ToggleList.prototype.expandSubList = function(number) {
     }
 
     // Check if the current clicked element is already open
-    if(utils.hasClass(containerId, expandClass)) {
+    if(classify.hasClass(containerId, expandClass)) {
         // Close the current clicked element
-        utils.removeClass(expandClass);
+        classify.removeClass(expandClass);
         status = true;
         return status;
     }
