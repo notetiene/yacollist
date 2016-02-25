@@ -7,6 +7,7 @@ var gulp       = require('gulp');
 var gulpsync   = require('gulp-sync')(gulp); // To do all these tasks in bulk
 var concat     = require('gulp-concat');
 var uglify     = require('gulp-uglify');
+var minify     = require('gulp-minify-css');
 // var sourcemaps = require('gulp-sourcemaps');
 // var clean      = require('gulp-clean'); // Clean
 
@@ -15,6 +16,7 @@ var vendordir  = './vendor/';
 var source     = './src/';
 var build      = './dist/';
 var jsdir      = './js/';
+var cssdir     = './css/';
 
 var project    = 'yacollist';
 
@@ -31,6 +33,12 @@ gulp.task('_vendor', function() {
         .pipe(gulp.dest(build + jsdir + vendordir));
 });
 
+// "_css" = Copy CSS files to dist
+gulp.task('_css', function() {
+    return gulp.src(source + cssdir + '*.css')
+        .pipe(concat(project.toLocaleLowerCase() + '.css'))
+        .pipe(gulp.dest(build + cssdir));
+});
 
 // "js" = uglify + concat
 gulp.task('js', function() {
@@ -47,18 +55,27 @@ gulp.task('vendor', function() {
         .pipe(gulp.dest(build + jsdir + vendordir));
 });
 
+// "_css" = Copy CSS files to dist
+gulp.task('_css', function() {
+    return gulp.src(source + cssdir + '*.css')
+        .pipe(minify())
+        .pipe(concat(project.toLocaleLowerCase() + '.css'))
+        .pipe(gulp.dest(build + cssdir));
+});
+
 // ========================================
 // Main tasks
 
 // "watch" = Automatically build on file change
 gulp.task('watch', function () {
     gulp.watch(source + jsdir + '*.js', ['_js']);
+    gulp.watch(source + cssdir + '*.css', ['_css']);
 });
 
 // "dist" = Make a distribution (build)
-gulp.task('dist', gulpsync.sync(['clean-dist', 'js', 'vendor']));
+gulp.task('dist', gulpsync.sync(['clean-dist', 'js', 'css', 'vendor']));
 
 // "build" = Make a simple build without optimizations
-gulp.task('build', gulpsync.sync(['_js', '_vendor']));
+gulp.task('build', gulpsync.sync(['_js', '_css', '_vendor']));
 // Default task
 gulp.task('default', ['build']);
