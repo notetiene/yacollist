@@ -413,7 +413,7 @@ ToggleList.prototype.expandSubList = function(number) {
     var titleId = document.getElementById(ids.title);
     // The hidden container of the SubList
     var containerId = document.getElementById(ids.container);
-    // Actual height of container children
+    // Actual height of the container children
     var height = containerId.getElementsByClassName('sublist-inner')
             .offsetHeight();
     // Class to mark that a SubList is expanded
