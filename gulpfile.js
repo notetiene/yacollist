@@ -12,7 +12,7 @@ var minify     = require('gulp-minify-css');
 // var clean      = require('gulp-clean'); // Clean
 
 // Paths
-var vendordir  = './vendor/';
+var vendordir  = './vendor/*/dist/';
 var source     = './src/';
 var build      = './dist/';
 var jsdir      = './js/';
