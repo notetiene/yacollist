@@ -1,0 +1,3 @@
+[submodule "vendor/typeok"]
+	path = vendor/typeok
+	url = https://github.com/notetiene/typeok.git
