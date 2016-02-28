@@ -12,10 +12,10 @@ var minify     = require('gulp-minify-css');
 // var clean      = require('gulp-clean'); // Clean
 
 // Paths
-var vendordir  = './vendor/*/dist/';
+var vendordir  = './vendor/**/dist/';
 var source     = './src/';
 var build      = './dist/';
-var jsdir      = './js/';
+var jsdir      = 'js/';
 var cssdir     = './css/';
 
 var project    = 'yacollist';
@@ -28,9 +28,15 @@ gulp.task('_js', function() {
 });
 
 // "_vendor" = Copy vendor files to dist
-gulp.task('_vendor', function() {
-    return gulp.src(source + jsdir + vendordir + '*.js')
-        .pipe(gulp.dest(build + jsdir + vendordir));
+gulp.task('_vendor_js', function() {
+    return gulp.src(vendordir + jsdir + '*.js')
+        .pipe(concat('vendor.js'))
+        .pipe(gulp.dest(build + jsdir));
+});
+
+gulp.task('_vendor_css', function() {
+    return gulp.src(vendordir + cssdir + '*.css')
+        .pipe(gulp.dest(build + cssdir));
 });
 
 // "_css" = Copy CSS files to dist
@@ -76,6 +82,6 @@ gulp.task('watch', function () {
 gulp.task('dist', gulpsync.sync(['clean-dist', 'js', 'css', 'vendor']));
 
 // "build" = Make a simple build without optimizations
-gulp.task('build', gulpsync.sync(['_js', '_css', '_vendor']));
+gulp.task('build', gulpsync.sync(['_js', '_css', ['_vendor_js', '_vendor_css']]));
 // Default task
 gulp.task('default', ['build']);
