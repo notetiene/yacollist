@@ -401,39 +401,37 @@ ToggleList.prototype.format = function() {
  * Expand the given SubList from the list and close the one open (if any).
  * @param {int} number - Nth SubList in the list.
  */
-ToggleList.prototype.expandSubList = function(number) {
-
-    /* IDs for the SubList title and container */
-    var ids = {
-        title: this.markup.idPrefixes.title + number,
-        container: this.markup.idPrefixes.container + number
-    };
-
+ToggleList.expandSubList = function(idTitle, idContainer, expandClass) {
     // The list item that toggle the SubList
-    var titleId = document.getElementById(ids.title);
+    var titleEl = document.getElementById(idTitle);
     // The hidden container of the SubList
-    var containerId = document.getElementById(ids.container);
+    var containerEl = document.getElementById(idContainer);
     // Actual height of the container children
-    var height = containerId.getElementsByClassName('sublist-inner')
-            .offsetHeight();
+    var height = containerEl.getElementsByClassName('sublist-inner')
+            [0].offsetHeight;
     // Class to mark that a SubList is expanded
-    var expandClass = this.markup.expandClass;
     var status = false;
 
     // Check that titleId and containerId exists (not null)
-    if(titleId === null || titleId === undefined || containerId === null || containerId === undefined) {
+    if(titleEl === null || titleEl === undefined || containerEl === null || containerEl === undefined) {
         return status;
     }
 
     // Check if the current clicked element is already open
-    if(classify.hasClass(containerId, expandClass)) {
+    if(classify.hasClass(containerEl, expandClass) !== -1) {
         // Close the current clicked element
-        classify.removeClass(expandClass);
+        classify.removeClass(containerEl, expandClass);
+        classify.setHeight(containerEl, 0);
         status = true;
         return status;
     }
+    else {
+        classify.addClass(containerEl, expandClass);
+        classify.setHeight(containerEl, height);
+        status = true;
+        return true;
+    }
 };
-
 
 /**
  * Add an onclick event on the given SubList identified with the ordering number.
@@ -442,16 +440,22 @@ ToggleList.prototype.expandSubList = function(number) {
 ToggleList.prototype.addEventToSubListTitle = function(number) {
     /* Convert number to string */
     number = number.toString();
-    var identifier = this.markup.idPrefixes.title + number;
 
-    console.log('In function addEventToSubListTitle');
+    /* IDs for the SubList title and container */
+    var ids = {
+        title: this.markup.idPrefixes.title + number,
+        container: this.markup.idPrefixes.container + number
+    };
+    var expandClass = this.markup.expandClass;
 
-    document.getElementById(identifier).addEventListener('click', function() {
+    // console.log('In function addEventToSubListTitle');
+
+    document.getElementById(ids.title).addEventListener('click', function() {
         /* Call function expandSubList on SubList title click */
-        this.expandSubList(number);
-        console.log('#' + identifier + ' activated expandSubList');
+        ToggleList.expandSubList(ids.title, ids.container, expandClass);
+        console.log('#' + ids.title + ' activated ' + ids.container);
     });
-    console.log('Add click event listener to ' + identifier);
+    console.log('Add click event listener to ' + ids.title);
 };
 
 /**
@@ -462,6 +466,11 @@ ToggleList.prototype.addEventToMembers = function() {
     for(var i=0, len=this._subListsNumber; i<len; i++) {
         this.addEventToSubListTitle(i);
     }
+};
+
+
+ToggleList.prototype.registerEvents = function() {
+
 };
 
 /* yacollist.js ends here */
