@@ -1,3 +1,6 @@
 [submodule "vendor/typeok"]
 	path = vendor/typeok
 	url = https://github.com/notetiene/typeok.git
+[submodule "vendor/classify"]
+	path = vendor/classify
+	url = https://github.com/notetiene/classify
